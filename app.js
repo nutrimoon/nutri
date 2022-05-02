@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const ejs=require('ejs')
 const app = express();
-const port = 3000
+//const port = 3000
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 app.set('view engine', 'ejs')
@@ -50,6 +50,11 @@ app.get('/delete', (req, res) => {
 app.get('/deletebyemail', (req, res) => {
     destroy(req,res)
 });
+
+let port = process.env.PORT;
+if (port == null || port == "") {
+    port = 3000;
+}
 
 app.listen(port, () => {
     console.log(`Server is listening on port http://localhost:${port}`);
